@@ -1,0 +1,35 @@
+services:
+  nasnotify:
+    # 镜像名称和标签
+    image: docker.1ms.run/koryking/nasnotify:latest
+    restart: unless-stopped
+
+    # 环境变量设置
+    environment:
+      UGREEN_CONFIGS: |
+        [
+          {
+            "ip_port": "192.168.66.31:9999",
+            "username": "koryking",
+            "password": "xxxxx",
+            "notify_type_name": "绿联云6800pro"
+          },
+          {
+            "ip_port": "192.168.66.50:9999",
+            "username": "koryking",
+            "password": "xxxxxxx",
+            "notify_type_name": "绿联云4800"
+          },
+          {
+            "ip_port": "192.168.66.43:9999",
+            "username": "koryking",
+            "password": "xxxxxx",
+            "notify_type_name": "绿联云4300P"
+          }
+        ]
+      WXPUSH_SPT: "xxxxxxxxxxx"
+      INTERVAL_MINUTES: 1
+      TZ: "Asia/Shanghai"
+
+    volumes:
+      - ./app/log:/app/log
